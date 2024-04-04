@@ -8,7 +8,8 @@ class Grid:
 
     def setup(self):
         self.board_size()
-        self.number_of_mine()
+        # self.number_of_mine()
+        self.game_difficulty()
         self.cell_list()
         self.get_numbers()
         self.print_test()
@@ -25,6 +26,32 @@ class Grid:
                     break
             except:
                 print('Enter a number:')
+
+    def game_difficulty(self):
+        print('Select difficulty: 1.Easy 2.Medium 3.Hard')
+        while True:
+            level_input = input('')   
+            try:
+                level_input = int(level_input)
+
+                if level_input == 1:
+                    self.mine_nums = self.board_s
+                    break
+                if level_input == 2:
+                    self.mine_nums = round(self.board_s * 1.5)
+                    break
+                if level_input == 3:
+                    self.mine_nums = self.board_s * 2
+                    break
+                else:
+                    print('Please select 1,2 or 3:')
+            except:
+                print('Please enter a number')
+        # print(self.mine_nums)
+                
+
+
+
 
     def number_of_mine(self):
         print(f'Please enter number of mines (between 0 and {self.board_s ** 2}):')
@@ -43,7 +70,6 @@ class Grid:
 
     def cell_list(self):
         self.cell = [[' '] * self.board_s for i in range(self.board_s)]
-        
         for k in range(self.mine_nums):
             i = random.randint(0,self.board_s-1)
             j = random.randint(0,self.board_s-1)
